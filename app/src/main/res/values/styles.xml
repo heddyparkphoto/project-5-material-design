@@ -18,11 +18,12 @@
 <resources>
 
     <style name="Theme.Bacon" parent="@style/Theme.AppCompat.Light.NoActionBar">
-
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.Bacon.Detail">
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.Bacon.Cheer" parent="Theme.Bacon">
