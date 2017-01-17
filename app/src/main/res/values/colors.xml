@@ -24,8 +24,18 @@
     <color name="ltgray">#ffe0e0e0</color>
 
     <!--hp: Initial-->
-    <color name="colorAccent">#ff5d40</color>
-    <color name="colorPrimary">#3399f9</color>
-    <color name="colorPrimaryDark">#174a79</color>
+    <color name="colorAccent">#ff7043</color>
+    <color name="colorPrimary">#b0bec5</color>
+    <color name="colorPrimary2">#cc546e7a</color>
+    <color name="colorPrimaryDark">#c3174a79</color>
+
+    <!--hp: darker texts-->
+    <color name="titleDark">#d004561a</color>
+    <color name="subtitleGray">#c604561a</color>
+    <color name="titleGray">#c8757575</color>
+
+    <color name="titleDark2">#04561A</color>
+    <color name="subtitleGray2">#04561A</color>
+    <color name="titleGray2">#757575</color>
 
 </resources>
