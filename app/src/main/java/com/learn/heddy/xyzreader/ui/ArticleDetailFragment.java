@@ -18,9 +18,11 @@ import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -55,6 +57,13 @@ public class ArticleDetailFragment extends Fragment implements
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
 
+    private TextView bodyView; //mBodytextView;
+    private ScrollView mArticleBodyScrollView;
+    private int mArticleScrollY;
+    private final static String LOG_TAG = ArticleDetailFragment.class.getSimpleName();
+
+    public int mToldY;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -82,6 +91,8 @@ public class ArticleDetailFragment extends Fragment implements
         mStatusBarFullOpacityBottom = getResources().getDimensionPixelSize(
                 R.dimen.detail_card_top_margin);
         setHasOptionsMenu(true);
+
+
     }
 
     public ArticleDetailActivity getActivityCast() {
@@ -138,6 +149,29 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
+        mArticleBodyScrollView = (ScrollView) mRootView.findViewById(R.id.article_body_scrollview);
+//        mArticleBodyScrollView.onGenericMotionEvent(MotionEvent.ACTION_SCROLL);
+
+        mArticleBodyScrollView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
+            @Override
+            public boolean onGenericMotion(View view, MotionEvent motionEvent) {
+
+                Log.d(LOG_TAG, "success!!!");
+
+                mArticleScrollY = mArticleBodyScrollView.getScrollY();
+
+                getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
+
+
+                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
+
+
+                updateStatusBar();
+
+                return true;
+            }
+        });
+
         bindViews();
         updateStatusBar();
         return mRootView;
@@ -159,6 +193,8 @@ public class ArticleDetailFragment extends Fragment implements
     }
 
     static float progress(float v, float min, float max) {
+
+        Log.d(LOG_TAG,"v: "+v+" min: "+min+" "+max+" max: ");
         return constrain((v - min) / (max - min), 0, 1);
     }
 
@@ -180,7 +216,8 @@ public class ArticleDetailFragment extends Fragment implements
         TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
-        TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
+        //hp: trying to animate the bodyText
+        bodyView = (TextView) mRootView.findViewById(R.id.article_body);
         bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 
         if (mCursor != null) {
@@ -196,7 +233,10 @@ public class ArticleDetailFragment extends Fragment implements
                             + " by <font color='#ffffff'>"
                             + mCursor.getString(ArticleLoader.Query.AUTHOR)
                             + "</font>"));
+
+
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
+
             ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
                         @Override
@@ -256,13 +296,22 @@ public class ArticleDetailFragment extends Fragment implements
     }
 
     public int getUpButtonFloor() {
+
+        boolean debugBool1 = mPhotoContainerView == null;
+        //int debugInt1 = mPhotoView.getHeight();
+
         if (mPhotoContainerView == null || mPhotoView.getHeight() == 0) {
             return Integer.MAX_VALUE;
         }
+
+        int debug1 = (int) mPhotoContainerView.getTranslationY() + mPhotoView.getHeight() - mScrollY;
+        int debug2 = mPhotoView.getHeight() - mScrollY;
 
         // account for parallax
         return mIsCard
                 ? (int) mPhotoContainerView.getTranslationY() + mPhotoView.getHeight() - mScrollY
                 : mPhotoView.getHeight() - mScrollY;
     }
+
+
 }

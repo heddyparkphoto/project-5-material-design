@@ -8,4 +8,7 @@
     <dimen name="fab_press_translation_z">6dp</dimen>
     <dimen name="fab_margin">24dp</dimen>
 
+    <!--Trying to move up the article body on top of the book photo container-->
+    <dimen name="init_scroll_up_distance">500dp</dimen>
+
 </resources>

@@ -5,126 +5,142 @@
     android:layout_height="match_parent"
     >
 
-<com.learn.heddy.xyzreader.ui.DrawInsetsFrameLayout
-    android:id="@+id/draw_insets_frame_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <com.learn.heddy.xyzreader.ui.ObservableScrollView
-        android:id="@+id/scrollview"
+    <com.learn.heddy.xyzreader.ui.DrawInsetsFrameLayout
+        android:id="@+id/draw_insets_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <FrameLayout
+        android:layout_height="match_parent"
+        >
+        <com.learn.heddy.xyzreader.ui.ObservableScrollView
+            android:id="@+id/scrollview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true"
+            >
             <FrameLayout
-                android:id="@+id/photo_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/photo_placeholder">
-                <!--suppress AndroidLintContentDescription -->
-                <ImageView
-                    android:id="@+id/photo"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_alignParentTop="true"
-                    android:scaleType="centerCrop"
-                     />
+                android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="112dp"
-                    android:background="@drawable/photo_background_protection" />
-
-            </FrameLayout>
-
-            <com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="415dp"
-                android:layout_gravity="center_horizontal"
-                android:maxWidth="@dimen/detail_card_max_width"
-                android:background="#fff"
-                android:elevation="2dp"
-                android:layout_marginTop="@dimen/detail_card_top_margin">
-
-                <LinearLayout
-                    android:id="@+id/meta_bar"
+                <FrameLayout
+                    android:id="@+id/photo_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_gravity="bottom"
-                    android:orientation="vertical"
-                    android:paddingLeft="@dimen/detail_inner_horiz_margin"
-                    android:paddingRight="@dimen/detail_inner_horiz_margin"
-                    android:paddingTop="@dimen/detail_metabar_vert_padding"
-                    android:paddingBottom="@dimen/detail_metabar_vert_padding"
-                    android:layout_marginBottom="@dimen/detail_metabar_vert_padding">
+                    android:background="@color/photo_placeholder">
+                    <!--suppress AndroidLintContentDescription -->
+                    <ImageView
+                        android:id="@+id/photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="centerCrop"
+                        />
 
-                    <TextView
-                        android:id="@+id/article_title"
-                        style="?android:attr/textAppearanceLarge"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="112dp"
+                        android:background="@drawable/photo_background_protection" />
+
+                </FrameLayout>
+
+                <com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+
+
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_gravity="center_horizontal"
+                    android:maxWidth="@dimen/detail_card_max_width"
+                    android:background="#fff"
+                    android:elevation="2dp"
+                    android:layout_marginTop="@dimen/detail_card_top_margin">
+
+                    <LinearLayout
+                        android:id="@+id/meta_bar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/detail_title_text_size"
-                        android:lineSpacingMultiplier="0.9"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_gravity="bottom"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/detail_inner_horiz_margin"
+                        android:paddingRight="@dimen/detail_inner_horiz_margin"
+                        android:paddingTop="@dimen/detail_metabar_vert_padding"
+                        android:paddingBottom="@dimen/detail_metabar_vert_padding"
+                        android:layout_marginBottom="@dimen/detail_metabar_vert_padding">
 
-                        android:text="Article Title here."
-                        />
+                        <TextView
+                            android:id="@+id/article_title"
+                            style="?android:attr/textAppearanceLarge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textColor="#fff"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/detail_title_text_size"
+                            android:lineSpacingMultiplier="0.9"
 
-                    <TextView
-                        android:id="@+id/article_byline"
-                        style="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
+                            android:text="Article Title here."
+                            />
+
+                        <TextView
+                            android:id="@+id/article_byline"
+                            style="?android:attr/textAppearanceSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#8fff"
+
+                            android:text="Article Byline here."
+                            />
+                    </LinearLayout>
+
+                    <ScrollView
+                        android:id="@+id/article_body_scrollview"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#8fff"
+                        android:nestedScrollingEnabled="true"
 
-                        android:text="Article Byline here."
-                        />
-                </LinearLayout>
+                        >
+                        <TextView
+                            android:id="@+id/article_body"
+                            style="?android:attr/textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
+                            android:layout_marginRight="@dimen/detail_inner_horiz_margin"
 
-                <TextView
-                    android:id="@+id/article_body"
-                    style="?android:attr/textAppearanceMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
-                    android:layout_marginRight="@dimen/detail_inner_horiz_margin"
 
-                    android:textColor="@color/titleGray2"
-                    android:textColorLink="@color/subtitleGray"
-                    android:textSize="@dimen/detail_body_text_size"
-                    android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
 
-                    android:text="Article body??? Should this be long?  Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long?  Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long?"
+                            android:paddingBottom="@dimen/detail_body_bottom_margin"
 
-                    />
 
-            </com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout>
-        </FrameLayout>
-    </com.learn.heddy.xyzreader.ui.ObservableScrollView>
+                            android:textColor="@color/titleGray2"
+                            android:textColorLink="@color/subtitleGray"
+                            android:textSize="@dimen/detail_body_text_size"
+                            android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
 
-</com.learn.heddy.xyzreader.ui.DrawInsetsFrameLayout>
+                            android:text="Article body??? Should this be long?  Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long?  Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long?"
+
+                            />
+                    </ScrollView>
+
+                </com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout>
+            </FrameLayout>
+        </com.learn.heddy.xyzreader.ui.ObservableScrollView>
+
+    </com.learn.heddy.xyzreader.ui.DrawInsetsFrameLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:layout_height="56dp"
-        android:layout_width="56dp"
         android:id="@+id/share_fab"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_share"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_anchor="@id/draw_insets_frame_layout"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         app:fabSize="normal"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        app:layout_anchor="@id/meta_bar"
+        android:src="@drawable/ic_share"
+        android:elevation="6dp"
         app:borderWidth="0dp"
-        app:layout_anchorGravity="bottom|right|end"
-        android:contentDescription="@string/action_share"
-        android:theme="@style/Theme.Bacon.Cheer"
-        android:contextClickable="true"/>
+        android:contentDescription="@string/action_share" />
 
 </android.support.design.widget.CoordinatorLayout>
