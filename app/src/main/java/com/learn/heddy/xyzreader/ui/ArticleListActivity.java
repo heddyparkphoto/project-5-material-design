@@ -1,5 +1,7 @@
 package com.learn.heddy.xyzreader.ui;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -95,8 +97,19 @@ public class ArticleListActivity extends ActionBarActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        Adapter adapter = new Adapter(cursor);
+        Adapter adapter = new Adapter(cursor, this);
         adapter.setHasStableIds(true);
+//
+//        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(
+//                this,
+//                thumbnailView,
+//                vh.thumbnailView.getTransitionName())
+//                .toBundle();
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW,
+//                ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
+//        startActivity(intent, bundle);
+
         mRecyclerView.setAdapter(adapter);
         int columnCount = getResources().getInteger(R.integer.list_column_count);
         StaggeredGridLayoutManager sglm =
@@ -111,9 +124,11 @@ public class ArticleListActivity extends ActionBarActivity implements
 
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private Cursor mCursor;
+        private Activity mContext;
 
-        public Adapter(Cursor cursor) {
+        public Adapter(Cursor cursor, Activity context) {
             mCursor = cursor;
+            mContext = context;
         }
 
         @Override
@@ -129,8 +144,15 @@ public class ArticleListActivity extends ActionBarActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(
+                            mContext,
+                            vh.thumbnailView,
+                            vh.thumbnailView.getTransitionName())
+                            .toBundle();
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
+                    startActivity(intent, bundle);
                 }
             });
             return vh;

@@ -27,7 +27,9 @@
             android:layout_alignParentTop="true"
 
 
-            android:background="@color/photo_placeholder" />
+            android:background="@color/photo_placeholder"
+            android:transitionName="@string/transition_photo"
+            />
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"

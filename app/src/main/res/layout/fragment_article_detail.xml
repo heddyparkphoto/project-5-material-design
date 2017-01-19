@@ -27,16 +27,18 @@
                     android:background="@color/photo_placeholder">
                     <!--suppress AndroidLintContentDescription -->
                     <ImageView
+                        android:layout_margin="10dp"
                         android:id="@+id/photo"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:layout_alignParentTop="true"
                         android:scaleType="centerCrop"
+                        android:transitionName="@string/transition_photo"
                         />
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="112dp"
+                        android:layout_height="312dp"
                         android:background="@drawable/photo_background_protection" />
 
                 </FrameLayout>
