@@ -2,4 +2,6 @@
     <!-- detail -->
     <dimen name="detail_photo_height">224dp</dimen>
     <dimen name="detail_inner_horiz_margin">112dp</dimen>
+
+    <item name="fragment_article_detail" type="layout">@layout/fragment_article_detail_wide</item>
 </resources>

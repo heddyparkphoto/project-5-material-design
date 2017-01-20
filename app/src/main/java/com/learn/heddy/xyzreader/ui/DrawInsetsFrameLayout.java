@@ -29,7 +29,6 @@ import android.widget.FrameLayout;
 
 import com.learn.heddy.xyzreader.R;
 
-
 public class DrawInsetsFrameLayout extends FrameLayout {
     private Drawable mInsetBackground;
     private Drawable mTopInsetBackground;

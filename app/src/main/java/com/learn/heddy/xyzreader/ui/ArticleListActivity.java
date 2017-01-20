@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -99,19 +100,12 @@ public class ArticleListActivity extends ActionBarActivity implements
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         Adapter adapter = new Adapter(cursor, this);
         adapter.setHasStableIds(true);
-//
-//        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(
-//                this,
-//                thumbnailView,
-//                vh.thumbnailView.getTransitionName())
-//                .toBundle();
-//
-//        Intent intent = new Intent(Intent.ACTION_VIEW,
-//                ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
-//        startActivity(intent, bundle);
 
         mRecyclerView.setAdapter(adapter);
+
         int columnCount = getResources().getInteger(R.integer.list_column_count);
+        Log.d("INTEGER COLUMN 2", ""+ columnCount);
+
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);

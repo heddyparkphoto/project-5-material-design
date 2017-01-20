@@ -17,19 +17,19 @@
 
 <resources>
 
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:transition">@transition/articlelist_exit</item>
     </style>
 
-    <style name="AppTheme.Detail">
-        <item name="android:statusBarColor">@android:color/transparent</item>
+    <style name="AppTheme" parent="BaseTheme">
+        <!--2-layer approach - BaseTheme is same as AppTheme       -->
     </style>
 
-    <style name="Theme.Bacon.Cheer" parent="AppTheme">
-
+    <style name="DetailTheme" parent="BaseTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>
