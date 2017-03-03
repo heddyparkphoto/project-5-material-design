@@ -16,6 +16,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.learn.heddy.xyzreader.R;
 import com.learn.heddy.xyzreader.data.ArticleLoader;
 import com.learn.heddy.xyzreader.data.ItemsContract;
 import com.learn.heddy.xyzreader.data.UpdaterService;
+import com.learn.heddy.xyzreader.util.Utility;
 
 /**
  * An activity representing a list of Articles. This activity has different presentations for
@@ -37,6 +40,7 @@ public class ArticleListActivity extends ActionBarActivity implements
     private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    private TextView mEmptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +53,34 @@ public class ArticleListActivity extends ActionBarActivity implements
         final View toolbarContainerView = findViewById(R.id.toolbar_container);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        mEmptyView = (TextView) findViewById(R.id.list_empty);
+
         getLoaderManager().initLoader(0, null, this);
 
         if (savedInstanceState == null) {
             refresh();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.refresh) {
+            startService(new Intent(this, UpdaterService.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void refresh() {
@@ -98,6 +123,8 @@ public class ArticleListActivity extends ActionBarActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        mSwipeRefreshLayout.setRefreshing(false);
+
         Adapter adapter = new Adapter(cursor, this);
         adapter.setHasStableIds(true);
 
@@ -109,11 +136,28 @@ public class ArticleListActivity extends ActionBarActivity implements
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
+
+        updateEmptyView(adapter);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mRecyclerView.setAdapter(null);
+    }
+
+    private void updateEmptyView(Adapter dapter) {
+
+        if (dapter.getItemCount() ==0){
+            boolean isOn = Utility.isOnline(this);
+            Log.d("EmptyView test", "no data status");
+            if (!isOn){
+                mEmptyView.setText(getString(R.string.noConnectivity));
+            }
+            mEmptyView.setVisibility(View.VISIBLE);
+        } else {
+            Log.d("EmptyView test", "Hmm... we have data? "+dapter.getItemCount());
+            mEmptyView.setVisibility(View.INVISIBLE);
+        }
     }
 
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
@@ -173,6 +217,16 @@ public class ArticleListActivity extends ActionBarActivity implements
         public int getItemCount() {
             return mCursor.getCount();
         }
+
+
+//        public void showHideEmptyView() {
+
+//            if (getItemCount() == 0){
+//                adapterEmptyView.setVisibility(View.VISIBLE);
+//            } else {
+//                adapterEmptyView.setVisibility(View.INVISIBLE);
+//            }
+//        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
