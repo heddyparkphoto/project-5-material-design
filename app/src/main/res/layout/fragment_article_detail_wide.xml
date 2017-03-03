@@ -10,50 +10,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        >
-        <FrameLayout
-            android:id="@+id/photo_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:background="@color/photo_placeholder">
-            <!--suppress AndroidLintContentDescription -->
-            <ImageView
-                android:layout_margin="10dp"
-                android:id="@+id/photo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:scaleType="centerCrop"
-                android:transitionName="@string/transition_photo"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/photo_background_protection" />
-
-        </FrameLayout>
-
         <com.learn.heddy.xyzreader.ui.ObservableScrollView
             android:id="@+id/scrollview"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4"
             android:nestedScrollingEnabled="true"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+            <FrameLayout
+                android:id="@+id/photo_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/photo_placeholder">
+                <!--suppress AndroidLintContentDescription -->
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:id="@+id/photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="centerCrop"
+                    android:transitionName="@string/transition_photo"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/photo_background_protection" />
+
+            </FrameLayout>
+
 
             <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                >
 
-                <LinearLayout
+                <com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout
                     android:orientation="vertical"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
 
 
                     android:layout_height="match_parent"
@@ -63,7 +64,8 @@
                     android:maxWidth="@dimen/detail_card_max_width"
                     android:background="#fff"
                     android:elevation="2dp"
-                    android:layout_marginTop="0dp">
+
+                    >
 
                     <LinearLayout
                         android:id="@+id/meta_bar"
@@ -133,12 +135,12 @@
 
                             />
                     </ScrollView>
+                </com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout>
 
-                </LinearLayout>
             </FrameLayout>
+            </LinearLayout>
         </com.learn.heddy.xyzreader.ui.ObservableScrollView>
 
-    </LinearLayout>
 
     </com.learn.heddy.xyzreader.ui.DrawInsetsFrameLayout>
 

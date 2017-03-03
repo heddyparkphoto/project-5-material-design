@@ -28,6 +28,7 @@
                 android:layout_marginLeft="@dimen/list_toolbar_side_margin"
                 android:layout_marginRight="@dimen/list_toolbar_side_margin"
                 android:layout_gravity="bottom"
+                app:popupTheme="@style/Widget.AppCompat.PopupMenu.Overflow"
                 >
             <ImageView
                 android:layout_width="wrap_content"

@@ -99,6 +99,12 @@ public class ArticleListActivity extends ActionBarActivity implements
         super.onStop();
         unregisterReceiver(mRefreshingReceiver);
     }
+//
+//    @Override
+//    protected void onResume() {
+//
+//        super.onResume();
+//    }
 
     private boolean mIsRefreshing = false;
 
