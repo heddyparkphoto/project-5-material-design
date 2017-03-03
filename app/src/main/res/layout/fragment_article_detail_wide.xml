@@ -16,15 +16,19 @@
             android:layout_height="match_parent"
             android:nestedScrollingEnabled="true"
             >
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
             <FrameLayout
                 android:id="@+id/photo_container"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="@color/photo_placeholder">
                 <!--suppress AndroidLintContentDescription -->
@@ -32,15 +36,15 @@
                     android:layout_margin="10dp"
                     android:id="@+id/photo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
+                    android:layout_height="wrap_content"
+
                     android:scaleType="centerCrop"
                     android:transitionName="@string/transition_photo"
                     />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="312dp"
                     android:background="@drawable/photo_background_protection" />
 
             </FrameLayout>
@@ -51,8 +55,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 >
-
-                <com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout
+                <com.learn.heddy.xyzreader.ui.MaxHeightLinearLayout
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
 
@@ -61,13 +64,15 @@
 
 
                     android:layout_gravity="center_horizontal"
-                    android:maxWidth="@dimen/detail_card_max_width"
+                    android:maxHeight="@dimen/detail_card_max_width"
                     android:background="#fff"
                     android:elevation="2dp"
 
                     >
 
-                    <LinearLayout
+
+
+                <LinearLayout
                         android:id="@+id/meta_bar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -135,10 +140,12 @@
 
                             />
                     </ScrollView>
-                </com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout>
 
+                </com.learn.heddy.xyzreader.ui.MaxHeightLinearLayout>
             </FrameLayout>
+
             </LinearLayout>
+            </FrameLayout>
         </com.learn.heddy.xyzreader.ui.ObservableScrollView>
 
 
