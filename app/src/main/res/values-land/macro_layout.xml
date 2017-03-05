@@ -5,4 +5,9 @@
 
     <item name="activity_article_detail" type="layout">@layout/activity_article_detail_wide</item>
     <item name="fragment_article_detail" type="layout">@layout/fragment_article_detail_wide</item>
+
+    <!--Best fit ViewPager in landscape for phones to use match_parent -->
+    <item name="match_parent" format="integer" type="dimen">-1</item>
+    <dimen name="wide_viewpager_width">@dimen/match_parent</dimen>
+
 </resources>

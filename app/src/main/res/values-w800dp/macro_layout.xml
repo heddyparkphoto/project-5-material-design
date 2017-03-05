@@ -6,4 +6,8 @@
 
     <!-- detail -->
     <dimen name="detail_card_max_width">704dp</dimen>
+
+    <!--Best fit ViewPager in landscape for w800dp and above-->
+    <dimen name="wide_viewpager_width">900dp</dimen>
+
 </resources>
