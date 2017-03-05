@@ -12,5 +12,6 @@
     <string name="transition_photo">transition photo</string>
     <string name="status_loading">Loading Readers List .... </string>
     <string name="noConnectivity">The network is not available to view Readers list</string>
+    <string name="open_settings">SETTINGS</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.learn.heddy.xyzreader.R;
@@ -40,7 +42,10 @@ public class ArticleListActivity extends ActionBarActivity implements
     private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    private ImageView mEmptyBgImageView;
     private TextView mEmptyView;
+    private View mCoorLayout;
+    private Snackbar mSnackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,9 @@ public class ArticleListActivity extends ActionBarActivity implements
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        mEmptyBgImageView = (ImageView)findViewById(R.id.bg_empty);
         mEmptyView = (TextView) findViewById(R.id.list_empty);
+        mCoorLayout = (View)findViewById(R.id.main_coorLayout);
 
         getLoaderManager().initLoader(0, null, this);
 
@@ -158,10 +165,25 @@ public class ArticleListActivity extends ActionBarActivity implements
             Log.d("EmptyView test", "no data status");
             if (!isOn){
                 mEmptyView.setText(getString(R.string.noConnectivity));
+                // Snackbar with Action to open directly the Devices Settings
+                if (mCoorLayout!=null) {
+                    mSnackbar = Snackbar.make(mCoorLayout,
+                            R.string.noConnectivity, Snackbar.LENGTH_LONG);
+                    mSnackbar.setAction(R.string.open_settings,
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                                }
+                            });
+                    mSnackbar.show();
+                }
             }
+            mEmptyBgImageView.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.VISIBLE);
         } else {
             Log.d("EmptyView test", "Hmm... we have data? "+dapter.getItemCount());
+            mEmptyBgImageView.setVisibility(View.INVISIBLE);
             mEmptyView.setVisibility(View.INVISIBLE);
         }
     }
