@@ -144,8 +144,6 @@ public class ArticleListActivity extends ActionBarActivity implements
         mRecyclerView.setAdapter(adapter);
 
         int columnCount = getResources().getInteger(R.integer.list_column_count);
-        Log.d("INTEGER COLUMN 2", ""+ columnCount);
-
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);

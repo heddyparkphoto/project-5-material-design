@@ -22,6 +22,7 @@
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
             app:expandedTitleMarginStart="52dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -40,7 +41,7 @@
                 android:gravity="bottom"
                 app:layout_collapseMode="pin"
                 />
-        </android.support.v7.widget.Toolbar>
+            </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -56,15 +57,15 @@
             android:clipToPadding="false"
             android:scrollbarStyle="outsideOverlay"
             android:paddingTop="@dimen/logo_clarence_margin"
-            android:paddingLeft="@dimen/list_side_margin"
-            android:paddingRight="@dimen/list_side_margin"
+            android:paddingLeft="@dimen/space_4dp"
+            android:paddingRight="@dimen/space_4dp"
             android:paddingBottom="28dp" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="@dimen/toolbar_clarence_margin"
         >
         <ImageView
             android:id="@+id/bg_empty"

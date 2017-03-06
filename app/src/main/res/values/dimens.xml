@@ -1,4 +1,6 @@
 <resources>
+    <!--activity list-->
+    <dimen name="list_text_left_padding">24dp</dimen>
     <!-- detail -->
     <dimen name="detail_title_text_size">32sp</dimen>
     <dimen name="detail_body_text_size">22sp</dimen>
@@ -6,7 +8,7 @@
 
     <dimen name="fab_elevation">2dp</dimen>
     <dimen name="fab_press_translation_z">6dp</dimen>
-    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="fab_size">56dp</dimen>
 
     <!--Trying to move up the article body on top of the book photo container-->
     <dimen name="init_scroll_up_distance">500dp</dimen>

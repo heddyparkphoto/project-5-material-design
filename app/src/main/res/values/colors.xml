@@ -24,7 +24,7 @@
     <color name="theme_accent2">#04561A</color>
     <color name="ltgray">#ff7043</color>
 
-    <!--hp: Initial-->
+    <!--hp: common colors-->
     <color name="colorAccent">#ff7043</color>
     <color name="colorPrimary">#b0bec5</color>
     <color name="colorPrimary2">#cc546e7a</color>
@@ -35,6 +35,7 @@
     <color name="subtitleGray">#c604561a</color>
     <color name="titleGray">#c8757575</color>
 
+    <!--hp: darkest colors-->
     <color name="titleDark2">#04561A</color>
     <color name="subtitleGray2">#04561A</color>
     <color name="titleGray2">#757575</color>

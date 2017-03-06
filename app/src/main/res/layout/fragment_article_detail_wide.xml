@@ -33,18 +33,16 @@
                 android:background="@color/photo_placeholder">
                 <!--suppress AndroidLintContentDescription -->
                 <ImageView
-                    android:layout_margin="10dp"
                     android:id="@+id/photo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:scaleType="centerCrop"
                     android:transitionName="@string/transition_photo"
                     />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="312dp"
+                    android:layout_height="@dimen/photo_prot"
                     android:background="@drawable/photo_background_protection" />
 
             </FrameLayout>
@@ -156,8 +154,8 @@
         android:layout_margin="16dp"
         app:layout_anchorGravity="bottom|end"
         app:layout_anchor="@id/draw_insets_frame_layout"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
         app:fabSize="normal"
         android:src="@drawable/ic_share"
         android:elevation="6dp"
