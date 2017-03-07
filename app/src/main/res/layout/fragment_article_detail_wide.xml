@@ -35,16 +35,11 @@
                             android:layout_height="@dimen/photo_prot"
                             android:background="@drawable/photo_background_protection" />
                     </FrameLayout>
-            <com.learn.heddy.xyzreader.ui.ObservableScrollView
-                android:id="@+id/scrollview"
+            <FrameLayout
+                android:id="@+id/formerly_scrollview"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:nestedScrollingEnabled="true"
-                >
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 >
                 <com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout
                     android:orientation="vertical"
@@ -129,7 +124,6 @@
 
                 </com.learn.heddy.xyzreader.ui.MaxWidthLinearLayout>
             </FrameLayout>
-            </com.learn.heddy.xyzreader.ui.ObservableScrollView>
 
             </LinearLayout>
 
