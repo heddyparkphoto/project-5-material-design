@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
@@ -18,7 +17,6 @@ import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -152,25 +150,25 @@ public class ArticleDetailFragment extends Fragment implements
         mArticleBodyScrollView = (ScrollView) mRootView.findViewById(R.id.article_body_scrollview);
 //        mArticleBodyScrollView.onGenericMotionEvent(MotionEvent.ACTION_SCROLL);
 
-        mArticleBodyScrollView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
-            @Override
-            public boolean onGenericMotion(View view, MotionEvent motionEvent) {
-
-                Log.d(LOG_TAG, "success!!!");
-
-                mArticleScrollY = mArticleBodyScrollView.getScrollY();
-
-                getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
-
-
-                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
-
-
-                updateStatusBar();
-
-                return true;
-            }
-        });
+//        mArticleBodyScrollView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
+//            @Override
+//            public boolean onGenericMotion(View view, MotionEvent motionEvent) {
+//
+//                Log.d(LOG_TAG, "success!!!");
+//
+//                mArticleScrollY = mArticleBodyScrollView.getScrollY();
+//
+//                getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
+//
+//
+//                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
+//
+//
+//                updateStatusBar();
+//
+//                return true;
+//            }
+//        });
 
         bindViews();
         updateStatusBar();
@@ -218,7 +216,7 @@ public class ArticleDetailFragment extends Fragment implements
         bylineView.setMovementMethod(new LinkMovementMethod());
         //hp: trying to animate the bodyText
         bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
+//        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
