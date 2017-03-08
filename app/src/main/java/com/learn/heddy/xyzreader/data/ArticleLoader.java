@@ -5,6 +5,8 @@ import android.content.CursorLoader;
 import android.net.Uri;
 
 /**
+ * Note:  This file is from the Udacity starter code-as-is.
+ *
  * Helper for loading a list of articles or a single article.
  */
 public class ArticleLoader extends CursorLoader {

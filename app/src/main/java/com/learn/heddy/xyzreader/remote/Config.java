@@ -3,6 +3,9 @@ package com.learn.heddy.xyzreader.remote;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/*
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 public class Config {
     public static final URL BASE_URL;
 

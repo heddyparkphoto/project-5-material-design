@@ -16,7 +16,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +28,15 @@ import com.learn.heddy.xyzreader.data.ArticleLoader;
 import com.learn.heddy.xyzreader.data.ItemsContract;
 import com.learn.heddy.xyzreader.data.UpdaterService;
 import com.learn.heddy.xyzreader.util.Utility;
+
+/**
+ * This file is from the Udacity starter code, then,
+ * following updates were made to complete the project:
+ *    1. EmptyView and background for it when there are no data to display
+ *    2. Snackbar with action when the reason for no data is the Network connectivity
+ *    3. Options menu with manual 'Refresh' to compensate the SwipeRefreshLayout
+ *    4. Add animation transition when an item click starts the Detail Activity
+ */
 
 /**
  * An activity representing a list of Articles. This activity has different presentations for
@@ -106,12 +114,6 @@ public class ArticleListActivity extends ActionBarActivity implements
         super.onStop();
         unregisterReceiver(mRefreshingReceiver);
     }
-//
-//    @Override
-//    protected void onResume() {
-//
-//        super.onResume();
-//    }
 
     private boolean mIsRefreshing = false;
 
@@ -136,13 +138,13 @@ public class ArticleListActivity extends ActionBarActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+
+        // stop the loader image
         mSwipeRefreshLayout.setRefreshing(false);
 
         Adapter adapter = new Adapter(cursor, this);
         adapter.setHasStableIds(true);
-
         mRecyclerView.setAdapter(adapter);
-
         int columnCount = getResources().getInteger(R.integer.list_column_count);
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
@@ -160,27 +162,26 @@ public class ArticleListActivity extends ActionBarActivity implements
 
         if (dapter.getItemCount() ==0){
             boolean isOn = Utility.isOnline(this);
-            Log.d("EmptyView test", "no data status");
+
             if (!isOn){
                 mEmptyView.setText(getString(R.string.noConnectivity));
-                // Snackbar with Action to open directly the Devices Settings
+                // Snackbar with Action to open the Devices Settings to reset the connection
                 if (mCoorLayout!=null) {
                     mSnackbar = Snackbar.make(mCoorLayout,
                             R.string.noConnectivity, Snackbar.LENGTH_LONG);
                     mSnackbar.setAction(R.string.open_settings,
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
-                                }
-                            });
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                            }
+                        });
                     mSnackbar.show();
                 }
             }
             mEmptyBgImageView.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.VISIBLE);
         } else {
-            Log.d("EmptyView test", "Hmm... we have data? "+dapter.getItemCount());
             mEmptyBgImageView.setVisibility(View.INVISIBLE);
             mEmptyView.setVisibility(View.INVISIBLE);
         }
@@ -226,6 +227,12 @@ public class ArticleListActivity extends ActionBarActivity implements
         public void onBindViewHolder(ViewHolder holder, int position) {
             mCursor.moveToPosition(position);
             holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+
+            /*
+                NOTE:  Commented out the complex time label to make the UI cleaner.
+                Keeping the code in place so we can put it right back if we need that information in the near-future.
+             */
+
             holder.subtitleView.setText(
 //                    DateUtils.getRelativeTimeSpanString(
 //                            mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
@@ -243,16 +250,6 @@ public class ArticleListActivity extends ActionBarActivity implements
         public int getItemCount() {
             return mCursor.getCount();
         }
-
-
-//        public void showHideEmptyView() {
-
-//            if (getItemCount() == 0){
-//                adapterEmptyView.setVisibility(View.VISIBLE);
-//            } else {
-//                adapterEmptyView.setVisibility(View.INVISIBLE);
-//            }
-//        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

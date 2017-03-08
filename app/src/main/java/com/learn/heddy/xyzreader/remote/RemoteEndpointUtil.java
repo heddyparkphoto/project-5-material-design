@@ -13,6 +13,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/*
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 public class RemoteEndpointUtil {
     private static final String TAG = "RemoteEndpointUtil";
 

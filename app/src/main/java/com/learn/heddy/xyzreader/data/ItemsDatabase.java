@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import static com.learn.heddy.xyzreader.data.ItemsProvider.Tables;
 
+/**
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 public class ItemsDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "xyzreader.db";
     private static final int DATABASE_VERSION = 1;

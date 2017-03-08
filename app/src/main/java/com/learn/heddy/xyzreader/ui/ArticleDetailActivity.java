@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,8 @@ import com.learn.heddy.xyzreader.data.ItemsContract;
 
 /**
  * Created by hyeryungpark on 1/15/17.
+ *
+ * Note: This file is from the Udacity starter code-as-is.
  */
 public class ArticleDetailActivity  extends ActionBarActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -38,9 +39,6 @@ public class ArticleDetailActivity  extends ActionBarActivity
     private MyPagerAdapter mPagerAdapter;
     private View mUpButtonContainer;
     private View mUpButton;
-
-
-    public int startScrollPos;
 
     private final static String LOG_TAG = ArticleDetailActivity.class.getSimpleName();
 
@@ -67,8 +65,6 @@ public class ArticleDetailActivity  extends ActionBarActivity
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
-
-                Log.d(LOG_TAG, "onPageScrollStateChanged");
                 mUpButton.animate()
                         .alpha((state == ViewPager.SCROLL_STATE_IDLE) ? 1f : 0f)
                         .setDuration(300);
@@ -76,9 +72,7 @@ public class ArticleDetailActivity  extends ActionBarActivity
 
             @Override
             public void onPageSelected(int position) {
-                Log.d(LOG_TAG, "onPageSelected");
                 if (mCursor != null) {
-                    Log.d(LOG_TAG, "onPageSelected and the mCursor is not null.");
                     mCursor.moveToPosition(position);
                 }
                 mSelectedItemId = mCursor.getLong(ArticleLoader.Query._ID);
@@ -92,7 +86,6 @@ public class ArticleDetailActivity  extends ActionBarActivity
         mUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(LOG_TAG, "mUpButton.setOnClick");
                 onSupportNavigateUp();
             }
         });
@@ -101,8 +94,6 @@ public class ArticleDetailActivity  extends ActionBarActivity
             mUpButtonContainer.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    Log.d(LOG_TAG, "mUpButtonContainer.setOnApp");
-
                     view.onApplyWindowInsets(windowInsets);
                     mTopInset = windowInsets.getSystemWindowInsetTop();
                     mUpButtonContainer.setTranslationY(mTopInset);
@@ -190,23 +181,4 @@ public class ArticleDetailActivity  extends ActionBarActivity
             return (mCursor != null) ? mCursor.getCount() : 0;
         }
     }
-
-//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-//    @Override
-//    public void onEnterAnimationComplete() {
-//
-//        Log.d(LOG_TAG, "inside onEnterAnimationComplete");
-//        super.onEnterAnimationComplete();
-//
-//        startScrollPos = getResources().getDimensionPixelSize(
-//                R.dimen.init_scroll_up_distance);
-//
-//        Animator animator = ObjectAnimator.ofInt(
-//                                    mUpButtonContainer,
-//                                            "scrollY",
-//                                            startScrollPos
-//                                    ).setDuration(300);
-//        animator.start();
-//
-//    }
 }

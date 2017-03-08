@@ -20,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -28,6 +27,10 @@ import com.android.volley.toolbox.ImageLoader;
 import com.learn.heddy.xyzreader.R;
 import com.learn.heddy.xyzreader.data.ArticleLoader;
 
+/**
+ * This file is from the Udacity starter code, then,
+ * a small update was made for landscape layout: fragment_article_detail_wide.xml
+ */
 /**
  * A fragment representing a single Article detail screen. This fragment is
  * either contained in a {@link ArticleListActivity} in two-pane mode (on
@@ -55,12 +58,7 @@ public class ArticleDetailFragment extends Fragment implements
     private boolean mIsCard = false;
     private int mStatusBarFullOpacityBottom;
 
-    private TextView bodyView; //mBodytextView;
-    private ScrollView mArticleBodyScrollView;
-    private int mArticleScrollY;
     private final static String LOG_TAG = ArticleDetailFragment.class.getSimpleName();
-
-    public int mToldY;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -89,8 +87,6 @@ public class ArticleDetailFragment extends Fragment implements
         mStatusBarFullOpacityBottom = getResources().getDimensionPixelSize(
                 R.dimen.detail_card_top_margin);
         setHasOptionsMenu(true);
-
-
     }
 
     public ArticleDetailActivity getActivityCast() {
@@ -121,6 +117,8 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
+        // There is no ObservableScrollView in landscape fragment, so check the null condition
+        // it is because the photo is displayed on the left-side and does not require the scroll.
         if (mRootView.findViewById(R.id.scrollview) != null) {
             mScrollView = (ObservableScrollView) mRootView.findViewById(R.id.scrollview);
 
@@ -149,29 +147,6 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        mArticleBodyScrollView = (ScrollView) mRootView.findViewById(R.id.article_body_scrollview);
-//        mArticleBodyScrollView.onGenericMotionEvent(MotionEvent.ACTION_SCROLL);
-
-//        mArticleBodyScrollView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
-//            @Override
-//            public boolean onGenericMotion(View view, MotionEvent motionEvent) {
-//
-//                Log.d(LOG_TAG, "success!!!");
-//
-//                mArticleScrollY = mArticleBodyScrollView.getScrollY();
-//
-//                getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
-//
-//
-//                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
-//
-//
-//                updateStatusBar();
-//
-//                return true;
-//            }
-//        });
-
         bindViews();
         updateStatusBar();
         return mRootView;
@@ -193,8 +168,6 @@ public class ArticleDetailFragment extends Fragment implements
     }
 
     static float progress(float v, float min, float max) {
-
-        Log.d(LOG_TAG,"v: "+v+" min: "+min+" "+max+" max: ");
         return constrain((v - min) / (max - min), 0, 1);
     }
 
@@ -216,9 +189,7 @@ public class ArticleDetailFragment extends Fragment implements
         TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
-        //hp: trying to animate the bodyText
-        bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-//        bodyView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "Rosario-Regular.ttf"));
+        TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
 
         if (mCursor != null) {
             mRootView.setAlpha(0);
@@ -296,22 +267,13 @@ public class ArticleDetailFragment extends Fragment implements
     }
 
     public int getUpButtonFloor() {
-
-        boolean debugBool1 = mPhotoContainerView == null;
-        //int debugInt1 = mPhotoView.getHeight();
-
         if (mPhotoContainerView == null || mPhotoView.getHeight() == 0) {
             return Integer.MAX_VALUE;
         }
-
-        int debug1 = (int) mPhotoContainerView.getTranslationY() + mPhotoView.getHeight() - mScrollY;
-        int debug2 = mPhotoView.getHeight() - mScrollY;
 
         // account for parallax
         return mIsCard
                 ? (int) mPhotoContainerView.getTranslationY() + mPhotoView.getHeight() - mScrollY
                 : mPhotoView.getHeight() - mScrollY;
     }
-
-
 }

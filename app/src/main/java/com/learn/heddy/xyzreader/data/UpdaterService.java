@@ -20,6 +20,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/*
+ * Updated the Udacity starter code to complete the project.
+ */
+
 public class UpdaterService extends IntentService {
     private static final String TAG = "UpdaterService";
 
@@ -40,7 +44,6 @@ public class UpdaterService extends IntentService {
         NetworkInfo ni = cm.getActiveNetworkInfo();
         if (ni == null || !ni.isConnected()) {
             Log.w(TAG, "Not online, not refreshing.");
-
             return;
         }
 
