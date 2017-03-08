@@ -21,6 +21,9 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+/*
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 /**
  * A simple {@link LinearLayout} subclass that has a maxWidth
  */

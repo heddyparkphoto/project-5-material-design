@@ -4,6 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.android.volley.toolbox.NetworkImageView;
+/*
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 
 public class DynamicHeightNetworkImageView extends NetworkImageView {
     private float mAspectRatio = 1.5f;

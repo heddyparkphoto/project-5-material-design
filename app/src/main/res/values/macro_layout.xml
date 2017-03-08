@@ -1,8 +1,10 @@
 <resources>
     <!-- list -->
     <dimen name="space_4dp">4dp</dimen>
+    <dimen name="padding_bottom">28dp</dimen>
     <dimen name="list_toolbar_side_margin">0dp</dimen>
     <integer name="list_column_count">2</integer>
+    <dimen name="thumbnail_height">100dp</dimen>
 
     <!-- detail -->
     <bool name="detail_is_card">false</bool>

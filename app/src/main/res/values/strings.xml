@@ -14,5 +14,9 @@
     <string name="noConnectivity">The network is not available to view Readers list</string>
     <!--Snackbar action button that opens the Devices's Settings-->
     <string name="open_settings">SETTINGS</string>
+    <string name="article_title_here">Article Title here.</string>
+    <string name="article_byline_here">Article Byline here.</string>
+    <string name="long_article_text">Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long?</string>
+    <string name="article_subtitle_here">In 1971, Hemingway\'s daugter writes about her ....</string>
 
 </resources>

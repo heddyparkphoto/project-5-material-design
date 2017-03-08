@@ -1,7 +1,5 @@
 <resources>
     <!-- detail -->
-    <!--<dimen name="detail_photo_height">224dp</dimen>-->
-    <!--<dimen name="detail_inner_horiz_margin">112dp</dimen>-->
     <dimen name="detail_inner_horiz_margin">64dp</dimen>
 
     <item name="activity_article_detail" type="layout">@layout/activity_article_detail_wide</item>
@@ -10,5 +8,4 @@
     <!--Best fit ViewPager in landscape for phones to use match_parent -->
     <item name="match_parent" format="integer" type="dimen">-1</item>
     <dimen name="wide_viewpager_width">@dimen/match_parent</dimen>
-
 </resources>

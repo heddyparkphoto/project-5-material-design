@@ -8,6 +8,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+/*
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 public class ImageLoaderHelper {
     private static ImageLoaderHelper sInstance;
 
