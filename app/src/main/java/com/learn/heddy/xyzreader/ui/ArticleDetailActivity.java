@@ -155,6 +155,16 @@ public class ArticleDetailActivity  extends ActionBarActivity
         mUpButton.setTranslationY(Math.min(mSelectedItemUpButtonFloor - upButtonNormalBottom, 0));
     }
 
+//    @Override
+//    public void onEnterAnimationComplete() {
+//        super.onEnterAnimationComplete();
+//        final int startScrollPos = getResources().getDimensionPixelSize(
+//                R.dimen.init_scroll_up_distance);
+//        Animator animator = ObjectAnimator.ofInt(
+//
+//        )
+//    }
+
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);

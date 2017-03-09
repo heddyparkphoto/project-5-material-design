@@ -56,7 +56,8 @@
                         android:paddingRight="@dimen/detail_inner_horiz_margin"
                         android:paddingTop="@dimen/detail_metabar_vert_padding"
                         android:paddingBottom="@dimen/detail_metabar_vert_padding"
-                        android:layout_marginBottom="@dimen/detail_metabar_vert_padding" >
+                        android:layout_marginBottom="@dimen/detail_metabar_vert_padding"
+                        >
                         <TextView
                             android:id="@+id/article_title"
                             style="?android:attr/textAppearanceLarge"
@@ -79,6 +80,7 @@
                             android:text="@string/article_byline_here"
                             />
                     </LinearLayout>
+
                     <ScrollView
                         android:id="@+id/article_body_scrollview"
                         android:layout_width="match_parent"

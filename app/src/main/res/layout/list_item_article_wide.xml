@@ -37,8 +37,8 @@
                 android:ellipsize="end"
                 android:maxLines="4"
                 android:text="@string/article_title_here"
-                android:textSize="18sp"
-                android:textColor="@color/titleGray2" />
+                android:textColor="@color/titleGray2"
+                android:textSize="20sp"/>
             <TextView
                 android:id="@+id/article_subtitle"
                 style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"

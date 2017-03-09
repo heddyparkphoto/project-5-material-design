@@ -10,12 +10,14 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +47,7 @@ import com.learn.heddy.xyzreader.util.Utility;
  * activity presents a grid of items as cards.
  */
 public class ArticleListActivity extends ActionBarActivity implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnChildScrollUpCallback {
 
     private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -66,7 +68,9 @@ public class ArticleListActivity extends ActionBarActivity implements
         final View toolbarContainerView = findViewById(R.id.toolbar_container);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mSwipeRefreshLayout.onStopNestedScroll(mRecyclerView);
 
         mEmptyBgImageView = (ImageView)findViewById(R.id.bg_empty);
         mEmptyView = (TextView) findViewById(R.id.list_empty);
@@ -187,6 +191,12 @@ public class ArticleListActivity extends ActionBarActivity implements
         }
     }
 
+    @Override
+    public boolean canChildScrollUp(SwipeRefreshLayout parent, @Nullable View child) {
+        Log.d("swipe", "called");
+        return false;
+    }
+
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private Cursor mCursor;
         private Activity mContext;
@@ -264,4 +274,18 @@ public class ArticleListActivity extends ActionBarActivity implements
             subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRefreshingUI();
+
+    }
 }
+/*  Images are down tonight: 3/9/  11 P.M. EST
+E/Volley: [164] BasicNetwork.performRequest: Unexpected response code 404 for https://dl.dropboxusercontent.com/u/231329/xyzreader_data/thumbs/p008.jpg
+E/Volley: [166] BasicNetwork.performRequest: Unexpected response code 404 for https://dl.dropboxusercontent.com/u/231329/xyzreader_data/thumbs/p007.jpg
+E/Volley: [167] BasicNetwork.performRequest: Unexpected response code 404 for https://dl.dropboxusercontent.com/u/231329/xyzreader_data/thumbs/p009.jpg
+
+
+ */
