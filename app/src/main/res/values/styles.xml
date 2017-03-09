@@ -26,6 +26,7 @@
 
     <style name="AppTheme" parent="BaseTheme">
         <!--2-layer approach - BaseTheme is same as AppTheme       -->
+        <item name="android:windowReenterTransition">@transition/articlelist_exit</item>
     </style>
 
     <style name="DetailTheme" parent="BaseTheme">
