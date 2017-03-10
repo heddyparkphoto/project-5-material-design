@@ -37,7 +37,7 @@
                 android:ellipsize="end"
                 android:maxLines="4"
                 android:text="@string/article_title_here"
-                android:textSize="18sp"
+                android:textSize="@dimen/list_item_title_size"
                 android:textColor="@color/titleGray2" />
             <TextView
                 android:id="@+id/article_subtitle"
