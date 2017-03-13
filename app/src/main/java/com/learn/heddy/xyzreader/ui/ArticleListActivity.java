@@ -288,4 +288,5 @@ E/Volley: [166] BasicNetwork.performRequest: Unexpected response code 404 for ht
 E/Volley: [167] BasicNetwork.performRequest: Unexpected response code 404 for https://dl.dropboxusercontent.com/u/231329/xyzreader_data/thumbs/p009.jpg
 
 
+https://gist.githubusercontent.com/AtomicSpider/12b731e3e2a41f336cc1bd7fc904efbb/raw/3e6da3480b132f6d0eb99ca3711da4a2c901627e/data.json
  */

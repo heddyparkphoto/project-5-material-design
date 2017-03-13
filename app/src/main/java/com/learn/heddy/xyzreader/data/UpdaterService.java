@@ -54,6 +54,7 @@ public class UpdaterService extends IntentService {
         ArrayList<ContentProviderOperation> cpo = new ArrayList<ContentProviderOperation>();
 
         Uri dirUri = ItemsContract.Items.buildDirUri();
+        Log.w(TAG, "Delete invoking...");
 
         // Delete all items
         cpo.add(ContentProviderOperation.newDelete(dirUri).build());
@@ -61,6 +62,7 @@ public class UpdaterService extends IntentService {
         try {
             JSONArray array = RemoteEndpointUtil.fetchJsonArray();
             if (array == null) {
+                Log.w(TAG, "JSONArray IS NULL.");
                 throw new JSONException("Invalid parsed item array" );
             }
 

@@ -10,7 +10,8 @@
     <string name="up">Up</string>
 
     <string name="transition_photo">transition photo</string>
-    <string name="status_loading">Loading Readers List .... </string>
+    <string name="status_loading">Loading Readers List ...</string>
+    <string name="status_unknown">Problem loading Readers List</string>
     <string name="noConnectivity">The network is not available to view Readers list</string>
     <!--Snackbar action button that opens the Devices's Settings-->
     <string name="open_settings">SETTINGS</string>
