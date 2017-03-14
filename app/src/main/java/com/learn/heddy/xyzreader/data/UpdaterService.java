@@ -21,7 +21,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /*
- * Updated the Udacity starter code to complete the project.
+ * Updated the Udacity starter code to complete the project:
+ * 1.  Apply package name of my project
  */
 
 public class UpdaterService extends IntentService {
@@ -54,7 +55,6 @@ public class UpdaterService extends IntentService {
         ArrayList<ContentProviderOperation> cpo = new ArrayList<ContentProviderOperation>();
 
         Uri dirUri = ItemsContract.Items.buildDirUri();
-        Log.w(TAG, "Delete invoking...");
 
         // Delete all items
         cpo.add(ContentProviderOperation.newDelete(dirUri).build());

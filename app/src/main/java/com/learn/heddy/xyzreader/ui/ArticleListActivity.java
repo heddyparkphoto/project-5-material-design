@@ -10,14 +10,12 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,12 +30,14 @@ import com.learn.heddy.xyzreader.data.UpdaterService;
 import com.learn.heddy.xyzreader.util.Utility;
 
 /**
- * This file is from the Udacity starter code, then,
- * following updates were made to complete the project:
+ * Starting with a copy of Udacity's starter code,
+ * added new views and behaviors to complete the project requirements:
+ *
  *    1. EmptyView and background for it when there are no data to display
  *    2. Snackbar with action when the reason for no data is the Network connectivity
  *    3. Options menu with manual 'Refresh' to compensate the SwipeRefreshLayout
  *    4. Add animation transition when an item click starts the Detail Activity
+ *    5. Enhance SwipeRefreshLayout's spinner behavior by setting the OnRefreshListener to invoke refresh()
  */
 
 /**
@@ -47,7 +47,7 @@ import com.learn.heddy.xyzreader.util.Utility;
  * activity presents a grid of items as cards.
  */
 public class ArticleListActivity extends ActionBarActivity implements
-        LoaderManager.LoaderCallbacks<Cursor>, SwipeRefreshLayout.OnChildScrollUpCallback {
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -68,13 +68,18 @@ public class ArticleListActivity extends ActionBarActivity implements
         final View toolbarContainerView = findViewById(R.id.toolbar_container);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mSwipeRefreshLayout.onStopNestedScroll(mRecyclerView);
 
         mEmptyBgImageView = (ImageView)findViewById(R.id.bg_empty);
         mEmptyView = (TextView) findViewById(R.id.list_empty);
-        mCoorLayout = (View)findViewById(R.id.main_coorLayout);
+        mCoorLayout = findViewById(R.id.main_coorLayout);
 
         getLoaderManager().initLoader(0, null, this);
 
@@ -182,6 +187,8 @@ public class ArticleListActivity extends ActionBarActivity implements
                         });
                     mSnackbar.show();
                 }
+            } else {
+                mEmptyView.setText(getString(R.string.status_unknown));
             }
             mEmptyBgImageView.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.VISIBLE);
@@ -189,12 +196,6 @@ public class ArticleListActivity extends ActionBarActivity implements
             mEmptyBgImageView.setVisibility(View.INVISIBLE);
             mEmptyView.setVisibility(View.INVISIBLE);
         }
-    }
-
-    @Override
-    public boolean canChildScrollUp(SwipeRefreshLayout parent, @Nullable View child) {
-        Log.d("swipe", "called");
-        return false;
     }
 
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
@@ -239,8 +240,9 @@ public class ArticleListActivity extends ActionBarActivity implements
             holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
 
             /*
-                NOTE:  Commented out the complex time label to make the UI cleaner.
-                Keeping the code in place so we can put it right back if we need that information in the near-future.
+                NOTE:  Commented out the complex timestamp label to make the Main List UI cleaner.
+                They are displayed in Detail Fragment.
+                Code kept in place so we can put it right back if we need that information in the near-future.
              */
 
             holder.subtitleView.setText(
@@ -250,6 +252,7 @@ public class ArticleListActivity extends ActionBarActivity implements
 //                            DateUtils.FORMAT_ABBREV_ALL).toString()
 //                            + " by "
                             "by " + mCursor.getString(ArticleLoader.Query.AUTHOR));
+
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
@@ -282,11 +285,3 @@ public class ArticleListActivity extends ActionBarActivity implements
 
     }
 }
-/*  Images are down tonight: 3/9/  11 P.M. EST
-E/Volley: [164] BasicNetwork.performRequest: Unexpected response code 404 for https://dl.dropboxusercontent.com/u/231329/xyzreader_data/thumbs/p008.jpg
-E/Volley: [166] BasicNetwork.performRequest: Unexpected response code 404 for https://dl.dropboxusercontent.com/u/231329/xyzreader_data/thumbs/p007.jpg
-E/Volley: [167] BasicNetwork.performRequest: Unexpected response code 404 for https://dl.dropboxusercontent.com/u/231329/xyzreader_data/thumbs/p009.jpg
-
-
-https://gist.githubusercontent.com/AtomicSpider/12b731e3e2a41f336cc1bd7fc904efbb/raw/3e6da3480b132f6d0eb99ca3711da4a2c901627e/data.json
- */

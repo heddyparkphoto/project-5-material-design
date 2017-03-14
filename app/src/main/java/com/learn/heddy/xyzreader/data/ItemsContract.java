@@ -2,6 +2,9 @@ package com.learn.heddy.xyzreader.data;
 
 import android.net.Uri;
 
+/*
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 public class ItemsContract {
 	public static final String CONTENT_AUTHORITY = "com.learn.heddy.xyzreader";
 	public static final Uri BASE_URI = Uri.parse("content://com.learn.heddy.xyzreader");

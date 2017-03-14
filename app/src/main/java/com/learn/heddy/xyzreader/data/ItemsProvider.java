@@ -15,6 +15,9 @@ import android.net.Uri;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Note:  This file is from the Udacity starter code-as-is.
+ */
 public class ItemsProvider extends ContentProvider {
 	private SQLiteOpenHelper mOpenHelper;
 

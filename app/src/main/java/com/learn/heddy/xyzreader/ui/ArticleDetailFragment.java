@@ -28,8 +28,13 @@ import com.learn.heddy.xyzreader.R;
 import com.learn.heddy.xyzreader.data.ArticleLoader;
 
 /**
- * This file is from the Udacity starter code, then,
- * a small update was made for landscape layout: fragment_article_detail_wide.xml
+ * Starting from the Udacity's starter code,
+ * following updates were made to complete the project:
+ *
+ * 1.  landscape layout: fragment_article_detail_wide.xml
+ * 2.  Make html hyperlinks in the article body view open Browser chooser
+ *     I found how-to by Google-ing: and chose this advice among the search results:
+ *     Credit to the author of this site: http://www.locked.de/2014/04/22/how-to-make-html-links-in-android-text-view-work/
  */
 /**
  * A fragment representing a single Article detail screen. This fragment is
@@ -207,6 +212,9 @@ public class ArticleDetailFragment extends Fragment implements
 
 
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
+            // make embedded hyperlinks open a web browser
+            // Credit: http://www.locked.de/2014/04/22/how-to-make-html-links-in-android-text-view-work/
+            bodyView.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
 
             ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {

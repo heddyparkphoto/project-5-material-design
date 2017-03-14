@@ -1,23 +1,21 @@
 <resources>
-
     <string name="app_name">XYZ Reader</string>
     <string name="welcome_xyz_reader">Welcome to XYZ Reader!</string>
-
     <string name="action_refresh">Refresh</string>
     <string name="action_settings">Settings</string>
     <string name="action_share">Share</string>
-
     <string name="up">Up</string>
-
-    <string name="transition_photo">transition photo</string>
+    <!--Shared Elements animation name-->
+    <string name="transition_photo" translatable="false">transition photo</string>
+    <!--Status Empty View messages-->
     <string name="status_loading">Loading Readers List ...</string>
     <string name="status_unknown">Problem loading Readers List</string>
     <string name="noConnectivity">The network is not available to view Readers list</string>
     <!--Snackbar action button that opens the Devices's Settings-->
     <string name="open_settings">SETTINGS</string>
+    <!--Default texts-->
     <string name="article_title_here">Article Title here.</string>
     <string name="article_byline_here">Article Byline here.</string>
     <string name="long_article_text">Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long? Article body??? Should this be long?Article body??? Should this be long?Article body??? Should this be long?</string>
     <string name="article_subtitle_here">In 1971, Hemingway\'s daugter writes about her ....</string>
-
 </resources>

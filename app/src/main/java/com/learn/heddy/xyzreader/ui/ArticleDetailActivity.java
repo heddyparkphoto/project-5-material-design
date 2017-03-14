@@ -23,7 +23,7 @@ import com.learn.heddy.xyzreader.data.ItemsContract;
 /**
  * Created by hyeryungpark on 1/15/17.
  *
- * Note: This file is from the Udacity starter code-as-is.
+ * Note: This file is a copy of the Udacity starter code-as-is.
  */
 public class ArticleDetailActivity  extends ActionBarActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -39,8 +39,6 @@ public class ArticleDetailActivity  extends ActionBarActivity
     private MyPagerAdapter mPagerAdapter;
     private View mUpButtonContainer;
     private View mUpButton;
-
-    private final static String LOG_TAG = ArticleDetailActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
