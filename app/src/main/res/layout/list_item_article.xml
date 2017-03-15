@@ -38,14 +38,14 @@
                 android:maxLines="4"
                 android:text="@string/article_title_here"
                 android:textSize="@dimen/list_item_title_size"
-                android:textColor="@color/titleGray2" />
+                android:textColor="@color/titleGray" />
             <TextView
                 android:id="@+id/article_subtitle"
                 style="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/list_text_left_padding"
-                android:textColor="@color/subtitleGray"
+                android:textColor="@color/subtitleGrayGreen"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:text="@string/article_subtitle_here"

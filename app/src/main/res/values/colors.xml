@@ -16,28 +16,18 @@
 -->
 
 <resources>
-    <color name="photo_placeholder">#ccc</color>
-
-    <color name="theme_primary">#ff7043</color>
-    <color name="theme_primary_dark">#04561A</color>
-    <color name="theme_accent">#ff7043</color>
-    <color name="theme_accent2">#04561A</color>
-    <color name="ltgray">#ff7043</color>
+    <!--hp:  light colors   -->
+    <color name="colorPrimary_100">#cfd8dc</color>
+    <color name="photo_placeholder">@color/colorPrimary_100</color>
 
     <!--hp: common colors-->
     <color name="colorAccent">#ff7043</color>
     <color name="colorPrimary_200">#b0bec5</color>
-    <color name="colorPrimary2">#cc546e7a</color>
     <color name="colorPrimary_700">#455a64</color>
 
     <!--hp: darker texts-->
-    <color name="titleDark">#d004561a</color>
-    <color name="subtitleGray">#c604561a</color>
-    <color name="titleGray">#c8757575</color>
-
-    <!--hp: darkest colors-->
-    <color name="titleDark2">#04561A</color>
-    <color name="subtitleGray2">#04561A</color>
-    <color name="titleGray2">#546e7a</color>
+    <color name="colorPrimary_600">#546e7a</color>
+    <color name="subtitleGrayGreen">#c604561a</color>
+    <color name="titleGray">@color/colorPrimary_600</color>
 
 </resources>
