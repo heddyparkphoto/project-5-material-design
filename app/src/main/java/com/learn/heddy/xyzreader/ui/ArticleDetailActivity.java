@@ -10,7 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +25,7 @@ import com.learn.heddy.xyzreader.data.ItemsContract;
  *
  * Note: This file is a copy of the Udacity starter code-as-is.
  */
-public class ArticleDetailActivity  extends ActionBarActivity
+public class ArticleDetailActivity  extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Cursor mCursor;

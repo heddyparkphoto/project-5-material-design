@@ -18,8 +18,8 @@
 <resources>
 
     <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary_200</item>
+        <item name="colorPrimaryDark">@color/colorPrimary_700</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:transition">@transition/articlelist_exit</item>
     </style>

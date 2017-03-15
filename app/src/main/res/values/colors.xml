@@ -26,9 +26,9 @@
 
     <!--hp: common colors-->
     <color name="colorAccent">#ff7043</color>
-    <color name="colorPrimary">#b0bec5</color>
+    <color name="colorPrimary_200">#b0bec5</color>
     <color name="colorPrimary2">#cc546e7a</color>
-    <color name="colorPrimaryDark">#c3174a79</color>
+    <color name="colorPrimary_700">#455a64</color>
 
     <!--hp: darker texts-->
     <color name="titleDark">#d004561a</color>
@@ -38,6 +38,6 @@
     <!--hp: darkest colors-->
     <color name="titleDark2">#04561A</color>
     <color name="subtitleGray2">#04561A</color>
-    <color name="titleGray2">#757575</color>
+    <color name="titleGray2">#546e7a</color>
 
 </resources>
